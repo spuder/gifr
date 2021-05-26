@@ -75,8 +75,8 @@ OUTPUT_FILE: Taegeuk1Jang
 ```
 docker run \ 
 --env-file foo.yaml \
--v $(pwd)/input:/input \ 
--v $(pwd)/output:/output \ 
+-v $(pwd)/input:/input \
+-v $(pwd)/output:/output \
 gifr
 ```
 
@@ -86,14 +86,14 @@ gifr
 for filename in ./SeniorBrown*.env; do
     source $filename
     docker run \
-    -v $(pwd)/input:/input \ 
-    -v $(pwd)/output:/output \ 
-    -e VIDEO_URL \ 
-    -e SPLITS \ 
-    -e INPUT_FILE \ 
-    -e OUTPUT_FILE \ 
-    -e RESOLUTION \ 
-    -e FPS \ 
+    -v $(pwd)/input:/input \
+    -v $(pwd)/output:/output \
+    -e VIDEO_URL \
+    -e SPLITS \
+    -e INPUT_FILE \
+    -e OUTPUT_FILE \
+    -e RESOLUTION \
+    -e FPS \
     gifr
 done
 ```

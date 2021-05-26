@@ -34,7 +34,7 @@ do
   # echo "duration is $duration"
 
   echo "start: ${start_time}; end ${stop_time}"
-  if [ "${SPLITS_ARRAY[@]}" -gt 1 ]; then
+  if [ "${#SPLITS_ARRAY[@]}" -gt 1 ]; then
     output=${OUTPUT_FILE}-part${part}-${RESOLUTION}.gif
   else
     output=${OUTPUT_FILE}-complete-${RESOLUTION}.gif
