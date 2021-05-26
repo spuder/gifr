@@ -7,7 +7,7 @@ Allows for repeatable / programatic batch conversion by storing timestamps as co
 ## Variables
 
 |Variable | Required | Example |
-| --- | --- |
+| --- | --- | --- |
 | `VIDEO_URL` | Optional | https://youtube.com/foo/bar | 
 | `SPLITS` | Required | `1:00^2:00, 3:03.24^4` | 
 | `INPUT_FILE` | Required | `Video1.mp4` | 
