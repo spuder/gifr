@@ -1,6 +1,8 @@
 # gifr
 
-Script + Docker container to take videos and split them up based on variables. 
+Script + Docker container to take youtube videos, convert them into .gif and optionally split them. 
+
+Allows for repeatable / programatic batch conversion by storing timestamps as code. 
 
 ## Variables
 
