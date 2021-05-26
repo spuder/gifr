@@ -105,3 +105,12 @@ done
 3. `ffmpeg` will then convert the .mp4 to a .gif. Splitting the file at timestamps defined in `SPLITS`. 
 4. The `gif` files will be saved to `./output`
 5. The resolution and frames per second can be overwritten by setting `RESOLUTION` and `FPS`
+
+
+# Docker
+
+Building the image
+
+```
+docker build -t gifr .
+```
