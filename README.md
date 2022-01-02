@@ -114,5 +114,7 @@ done
 Building the image
 
 ```
-docker build -t gifr .
+docker build -t spuder/gifr .
+docker tag spuder/gifr  spuder/gifr:latest
+docker push spuder/gifr:latest
 ```
