@@ -1,9 +1,6 @@
 #!/bin/bash
-# Usage:
-# source juniorbrown.env
-# ./gif.sh
-set -u
-# source $1
+
+set -ue
 
 RESOLUTION=${RESOLUTION:-480}
 FPS=${FPS:-8}
@@ -11,10 +8,11 @@ FPS=${FPS:-8}
 function download_video {
   if [ ! -f "input/${INPUT_FILE}" ]; then
     echo "input/${INPUT_FILE} does not exist, downloading ${VIDEO_URL}"
-    filename=$(youtube-dl ${VIDEO_URL} --get-filename)
-    filename=$(echo ${filename/webm/mp4})
-    youtube-dl -f 22 ${VIDEO_URL}
-    mv "${filename}" input/${INPUT_FILE}
+    filename=$(youtube-dl "${VIDEO_URL}" --get-filename)
+    filename=$(echo "${filename/webm/mp4}")
+    echo "Downloading ${VIDEO_URL}... This may take a while"
+    youtube-dl -f 22 "${VIDEO_URL}"
+    mv "${filename}" "input/${INPUT_FILE}"
   else
     echo "input/${INPUT_FILE} already exists"
   fi
@@ -22,7 +20,7 @@ function download_video {
 
 download_video
 
-echo "Converting Video"
+echo "Converting Video ${INPUT_FILE} to gif"
 IFS=',' read -r -a SPLITS_ARRAY <<< "${SPLITS}"
 
 part=1
@@ -35,9 +33,10 @@ do
 
   echo "start: ${start_time}; end ${stop_time}"
   if [ "${#SPLITS_ARRAY[@]}" -gt 1 ]; then
-    output=${OUTPUT_FILE}-part${part}-${RESOLUTION}.gif
+    echo "part ${part} of ${#SPLITS_ARRAY[@]}"
+    output="${OUTPUT_FILE}-part${part}-${RESOLUTION}.gif"
   else
-    output=${OUTPUT_FILE}-complete-${RESOLUTION}.gif
+    output="${OUTPUT_FILE}-complete-${RESOLUTION}.gif"
   fi
   ffmpeg -ss ${start_time} -to ${stop_time} -i "input/${INPUT_FILE}" -filter_complex "[0:v] fps=${FPS},scale=${RESOLUTION}:-1,split [a][b];[a] palettegen [p];[b][p] paletteuse" -y output/${output}
   # ffmpeg -i output/${output} -filter_complex "color=c=red:s=${RESOLUTION}x10[bar];[0][bar]overlay=-w+(w/10)*t:H-h:shortest=1" -c:a copy output/red-${output}
