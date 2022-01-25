@@ -40,5 +40,5 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          repository: spuder/stl2origin
+          repository: spuder/gifr
           short-description: https://github.com/spuder/gifr
