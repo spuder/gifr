@@ -4,6 +4,10 @@ Script + Docker container to take youtube videos, convert them into .gif and opt
 
 Allows for repeatable / programatic batch conversion by storing timestamps as code. 
 
+```
+docker pull spuder/gifr:latest
+```
+
 ## Variables
 
 |Variable | Required | Example |
