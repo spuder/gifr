@@ -8,10 +8,10 @@ FPS=${FPS:-8}
 function download_video {
   if [ ! -f "input/${INPUT_FILE}" ]; then
     echo "input/${INPUT_FILE} does not exist, downloading ${VIDEO_URL}"
-    filename=$(youtube-dl "${VIDEO_URL}" --get-filename)
+    filename=$(yt-dlp "${VIDEO_URL}" --get-filename)
     filename=$(echo "${filename/webm/mp4}")
     echo "Downloading ${VIDEO_URL}... This may take a while"
-    youtube-dl -f 22 "${VIDEO_URL}"
+    yt-dlp -f 22 "${VIDEO_URL}"
     mv "${filename}" "input/${INPUT_FILE}"
   else
     echo "input/${INPUT_FILE} already exists"

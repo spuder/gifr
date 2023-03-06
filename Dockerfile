@@ -8,7 +8,9 @@ ENV OUTPUT_FILE=""
 ENV RESOLUTION=""
 ENV FPS=""
 
-RUN apk add youtube-dl ffmpeg bash --no-cache 
+RUN apk add ffmpeg bash curl python3 py3-pip --no-cache 
+# Download and install to /usr/local/bin from https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp
+RUN curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp && chmod +x /usr/local/bin/yt-dlp
 COPY gifr /usr/local/bin/gifr
 RUN chmod +x /usr/local/bin/gifr
 
